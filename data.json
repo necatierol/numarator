@@ -1,0 +1,24 @@
+{
+    "comport_settings": {
+        "serial_name": "COM3",
+        "baud_rate": 9600,
+        "timeout": 0.1
+    },
+    "ui_settings": {
+        "show_number_count": 5
+    },
+    "commands": {
+        "A": {
+            "title": "Röntgen 1",
+            "message": "Röntgen 1'e gidiniz"
+        },
+        "B": {
+            "title": "Röntgen 2",
+            "message": "Röntgen 2'ye gidiniz"
+        }
+    },
+    "messages": {
+        "title": "Numaranızı takip ediniz"
+    },
+    "date": ""
+}

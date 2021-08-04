@@ -1,0 +1,14 @@
+QMainWindow {
+  background-color: turquoise;
+}
+
+QGroupBox {
+  border: none;
+}
+
+QLabel {
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  border: 1px solid white;
+}
