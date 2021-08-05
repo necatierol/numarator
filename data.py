@@ -8,7 +8,7 @@ class Data():
     self.__readJsonFile()
 
   def __readJsonFile(self):
-    with open('data.json', 'r') as file:
+    with open('config.json', 'r') as file:
       dataFile = file.read()
 
     self.data = json.loads(dataFile)
@@ -31,7 +31,7 @@ class Data():
   def getGrouppedNumbers(self):
     numbers = defaultdict(list)  # each entry of the dict is, by default, an empty list
 
-    with open('numbers.csv', 'r') as csvfile:
+    with open('data/numbers.csv', 'r') as csvfile:
       csvreader = csv.reader(csvfile, delimiter=',', quotechar='"')
       for row in csvreader:
         numbers[row[0]].append(row[1])

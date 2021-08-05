@@ -3,7 +3,7 @@ import serial
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication
 
-from form import Window
+from ui.show_screen import Window
 from data import Data
 
 data = Data()
