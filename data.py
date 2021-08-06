@@ -25,6 +25,12 @@ class Data():
   def getWindowTitle(self):
     return self.data["messages"]["title"]
 
+  def getCreateNumberButtonMessage(self):
+    return self.data["messages"]["create_number_button"]
+
+  def getCompanyName(self):
+    return self.data["messages"]["company"]
+
   def getDate(self):
     return self.data["date"]
 

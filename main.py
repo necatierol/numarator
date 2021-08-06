@@ -3,7 +3,8 @@ import serial
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication
 
-from ui.show_screen import Window
+from ui.show_screen import ShowScreen
+from ui.print_screen import PrintScreen
 from data import Data
 
 data = Data()
@@ -18,7 +19,8 @@ commands = data.getCommands()
 #     timeout=settings["timeout"])
 
 App = QApplication(sys.argv)
-window = Window()
+show_screen = ShowScreen()
+print_screen = PrintScreen()
 
 def listener():
     # command = serialport.read()

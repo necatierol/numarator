@@ -6,9 +6,14 @@ QGroupBox {
   border: none;
 }
 
-QLabel {
+QLabel,
+QPushButton {
   color: white;
   font-size: 32px;
   text-align: center;
   border: 1px solid white;
+}
+
+QPushButton:hover {
+  background: #00CED1;
 }

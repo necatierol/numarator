@@ -8,7 +8,7 @@ from data import Data
 
 data = Data()
 
-class Window(QMainWindow):
+class ShowScreen(QMainWindow):
 	def __init__(self):
 		super().__init__()
 		self.labels = data.getCommands()
@@ -16,7 +16,7 @@ class Window(QMainWindow):
 		self.ui_settings = data.getUISettings()
 		self.show_number_count = self.ui_settings["show_number_count"]
 
-		self.setStyleSheet(open("style.qss", "r").read())
+		self.setStyleSheet(open("ui/style.qss", "r").read())
 		self.setWindowFlag(Qt.FramelessWindowHint)
 		self.initUI()
 
@@ -38,7 +38,7 @@ class Window(QMainWindow):
 
 	def createBanner(self):
 		label = QLabel(self)
-		pixmap = QPixmap('./banner.png')
+		pixmap = QPixmap('ui/banner.png')
 		label.setPixmap(pixmap)
 		label.resize(pixmap.width(), pixmap.height())
 
