@@ -1,4 +1,4 @@
-import sys
+from playsound import playsound
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -33,6 +33,7 @@ class ShowScreen(QMainWindow):
 			next_number = data.getNextNumber(key)
 			if(next_number != 0):
 				self.setNumbers(key, next_number)
+				self.playNotificationSound()
 			else:
 				print("next number is not found")
 		else:
@@ -89,3 +90,6 @@ class ShowScreen(QMainWindow):
 
 		oldNumberLabel.setText(activeNumberLabel.text())
 		activeNumberLabel.setText(str(number))
+
+	def playNotificationSound(self):
+		playsound("ui/notification.wav")
