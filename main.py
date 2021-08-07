@@ -1,5 +1,6 @@
 import sys
 import serial
+from datetime import date
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication
 
@@ -19,6 +20,16 @@ commands = data.getCommands()
 #     timeout=settings["timeout"])
 
 App = QApplication(sys.argv)
+
+lastDate = data.getDate()
+today = date.today()
+
+print(lastDate.date())
+print(today)
+if(lastDate.date() != today):
+    data.truncateNumbers()
+    data.setDate(today)
+
 show_screen = ShowScreen()
 print_screen = PrintScreen()
 

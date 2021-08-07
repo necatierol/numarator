@@ -1,6 +1,7 @@
 import json
 import csv
 import shutil
+from datetime import datetime
 from tempfile import NamedTemporaryFile
 from collections import defaultdict
 
@@ -34,7 +35,21 @@ class Data():
     return self.data["messages"]["company"]
 
   def getDate(self):
-    return self.data["date"]
+    with open('data/date.txt', 'r') as file:
+      date = file.readline()
+      date = datetime.strptime(date, '%Y-%m-%d')
+
+    return date
+  
+  def setDate(self, new_date):
+    with open('data/date.txt', 'w') as file:
+      date = file.write(str(new_date))
+
+    return date
+
+  def truncateNumbers(self):
+    csvfile = open("data/numbers.csv", "w+")
+    csvfile.close()
 
   def getGrouppedNumbers(self):
     numbers = defaultdict(list)  # each entry of the dict is, by default, an empty list
