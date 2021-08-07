@@ -23,9 +23,6 @@ class PrintScreen(QMainWindow):
 		self.setWindowFlag(Qt.FramelessWindowHint)
 		self.initUI()
 
-	def keyPressEvent(self, e):
-		print(e.key())
-
 	def initUI(self):
 		widget = QWidget(self)
 		self.setCentralWidget(widget)
@@ -33,7 +30,7 @@ class PrintScreen(QMainWindow):
 		layout = QGridLayout()
 
 		printButton = QPushButton(data.getCreateNumberButtonMessage())
-		printButton.clicked.connect(self.print)
+		printButton.clicked.connect(self.print_number)
 
 		layout.addLayout(template.header(), 0, 0, 1, 0)
 		layout.addWidget(printButton, 1, 0, 5, 0)
@@ -43,5 +40,6 @@ class PrintScreen(QMainWindow):
 		self.showMaximized()
 		self.show()
 
-	def print(self):
-		print("pressed")
+	def print_number(self):
+		new_number = data.createNumber()
+		print("number {} is printing".format(new_number))

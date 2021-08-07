@@ -5,8 +5,15 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import Qt
 
 from data import Data
+from ui.template import Template
 
 data = Data()
+template = Template()
+
+keys = {
+	65: "A",
+	66: "B"
+}
 
 class ShowScreen(QMainWindow):
 	def __init__(self):
@@ -21,7 +28,15 @@ class ShowScreen(QMainWindow):
 		self.initUI()
 
 	def keyPressEvent(self, e):
-		print(e.key())
+		if(e.key() in keys):
+			key = keys[e.key()]
+			next_number = data.getNextNumber(key)
+			if(next_number != 0):
+				self.setNumbers(key, next_number)
+			else:
+				print("next number is not found")
+		else:
+			print("invalid key... please press A or B")
 
 	def initUI(self):
 		 # Create widget
@@ -29,20 +44,12 @@ class ShowScreen(QMainWindow):
 		self.setCentralWidget(widget)
 
 		layout = QVBoxLayout()
-		layout.addWidget(self.createBanner(), 0)
+		layout.addLayout(template.header(), 0)
 		layout.addWidget(self.createGridLayout(), 1)
 		widget.setLayout(layout)
         
 		self.showMaximized()
 		self.show()
-
-	def createBanner(self):
-		label = QLabel(self)
-		pixmap = QPixmap('ui/banner.png')
-		label.setPixmap(pixmap)
-		label.resize(pixmap.width(), pixmap.height())
-
-		return label
 
 	def createGridLayout(self):
 		horizontalGroupBox = QGroupBox()
@@ -68,6 +75,7 @@ class ShowScreen(QMainWindow):
 		for i in range(self.show_number_count):
 			number = numbers[i] if len(numbers) > i else ''
 			numberLabel = QLabel("{}".format(number))
+			numberLabel.setObjectName("{}_{}".format(key, "active" if i == 0 else "old"))
 			numberLabel.setAlignment(Qt.AlignCenter)
 			layout.addWidget(numberLabel, 0)
 
@@ -75,7 +83,9 @@ class ShowScreen(QMainWindow):
 
 		return verticalLayout
 
+	def setNumbers(self, key, number):
+		oldNumberLabel = self.findChild(QLabel, "{}_old".format(key))
+		activeNumberLabel = self.findChild(QLabel, "{}_active".format(key))
 
-
-	def setMessageText(self, text):
-		self.label_1.setText(text)
+		oldNumberLabel.setText(activeNumberLabel.text())
+		activeNumberLabel.setText(str(number))
